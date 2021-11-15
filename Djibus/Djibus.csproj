@@ -19,4 +19,7 @@
   <ItemGroup>
     <PackageReference Include="Telerik.UI.for.Blazor" Version="2.29.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Djibus.Core\Djibus.Core.csproj" />
+  </ItemGroup>
 </Project>

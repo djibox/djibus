@@ -1,6 +1,6 @@
 using System.Configuration;
 using Djibus.Areas.Identity;
-using Djibus.Data;
+using Djibus.Core.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;

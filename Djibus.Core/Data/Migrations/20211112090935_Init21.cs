@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Djibus.Data.Migrations
+namespace Djibus.Core.Data.Migrations
 {
     public partial class Init21 : Migration
     {

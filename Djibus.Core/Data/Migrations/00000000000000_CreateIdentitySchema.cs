@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Djibus.Data.Migrations
+namespace Djibus.Core.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
