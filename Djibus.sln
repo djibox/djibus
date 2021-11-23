@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Djibus", "Djibus\Djibus.csproj", "{3650E406-BBBB-4A3F-9C02-9D6C24BD6970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Djibus.Core", "Djibus.Core\Djibus.Core.csproj", "{6AFC8B9F-CF86-4C74-B919-F4904852B6F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Djibus.Core", "Djibus.Core\Djibus.Core.csproj", "{6AFC8B9F-CF86-4C74-B919-F4904852B6F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
