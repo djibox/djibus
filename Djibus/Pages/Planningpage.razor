@@ -1,0 +1,63 @@
+﻿@page "/planningpage"
+
+@page "/gantt/overview"
+@page "/gantt/index"
+
+<TelerikGantt Data="@Data"
+              Width="100%"
+              Height="600px"
+              IdField="Id"
+              ParentIdField="ParentId"
+              @bind-View="@SelectedView"
+              OnUpdate="@UpdateTask"
+              OnDelete="@DeleteTask"
+              OnCreate="@CreateTask"
+              Navigable="true"
+              Sortable="true"
+              SortMode="@SortMode.Multiple"
+              FilterMode="@GanttFilterMode.FilterMenu"
+              FilterMenuType="@FilterMenuType.Menu">
+    <GanttToolBar>
+        <GanttCommandButton Command="Add" Icon="add">Add</GanttCommandButton>
+    </GanttToolBar>
+    <GanttColumns>
+        <GanttColumn Field="Id"
+                     Visible="false">
+        </GanttColumn>
+        <GanttColumn Field="Title"
+                     Expandable="true"
+                     Width="220px"
+                     Title="Task Title">
+        </GanttColumn>
+        <GanttColumn Field="Start"
+                     Width="100px"
+                     DisplayFormat="{0:d}">
+        </GanttColumn>
+        <GanttColumn Field="End"
+                     Width="100px"
+                     DisplayFormat="{0:d}">
+        </GanttColumn>
+        <GanttColumn Field="PercentComplete"
+                     Title="Status"
+                     Width="100px"
+                     DisplayFormat="{0:P}">
+        </GanttColumn>
+        <GanttCommandColumn Width="100px">
+            <GanttCommandButton Command="Add" Icon="add"></GanttCommandButton>
+            <GanttCommandButton Command="Delete" Icon="delete"></GanttCommandButton>
+        </GanttCommandColumn>
+    </GanttColumns>
+    <GanttViews>
+        <GanttDayView></GanttDayView>
+        <GanttWeekView></GanttWeekView>
+        <GanttMonthView></GanttMonthView>
+    </GanttViews>
+</TelerikGantt>
+
+<style>
+    /*needed as we want to override the default
+        outlining styles coming from the browser*/
+    .k-gantt [tabindex="-1"]:focus {
+        outline: 0;
+    }
+</style>
