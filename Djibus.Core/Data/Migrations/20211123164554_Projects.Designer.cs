@@ -4,6 +4,7 @@ using Djibus.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Djibus.Core.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211123164554_Projects")]
+    partial class Projects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,95 +101,13 @@ namespace Djibus.Core.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("ActualEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ActualStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("AllotedBudget")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ApprovedBudget")
-                        .HasColumnType("float");
-
-                    b.Property<double>("AvailableBudget")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Beneficiary")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChallengesOrSolutions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ChangeManNeeded")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Comments")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Customer")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Effort")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ExpectedEndDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PM")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("PlannedEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("PlannedStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PourcentageAchievement")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("ProjectDeliveryDelay")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("ProjectProcurementIssues")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ProjectStage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ProjectsGovernanceIssue")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("ProjectsRessourcesWithMultiplesAssignement")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("ProjectsVendorExternalRessources")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("RessourceChis1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ThemeStrategy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("projectStaffingRessourcesIssues")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("projectUsersAvailabilityIssue")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

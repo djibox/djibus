@@ -7,6 +7,7 @@
     <UserSecretsId>aspnet-Djibus-F0613FD9-D0C5-4D81-8B5B-35F1B47AECFA</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="LinqToExcel" Version="1.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />

@@ -1,0 +1,11 @@
+﻿@page "/processingpage"
+
+<div class="k-form-field-wrap">
+    <TelerikUpload AllowedExtensions="@(new List<string> {".pdf", ".docx", ".xls", ".xlsx"})"
+                   OnSelect="@OnSelectHandler"
+                   OnCancel="@OnCancelHandler"
+                   OnRemove="@OnRemoveHandler">
+    </TelerikUpload>
+    <div class="k-form-hint">Accepted files: <strong>EXCEL (.xls, .xlsx)</strong></div>
+
+</div>

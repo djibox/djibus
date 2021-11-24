@@ -4,6 +4,7 @@ using Djibus.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Djibus.Core.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211123182216_FullUpdateProjectFile")]
+    partial class FullUpdateProjectFile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,9 +117,11 @@ namespace Djibus.Core.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Beneficiary")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ChallengesOrSolutions")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ChangeManNeeded")
@@ -127,9 +131,11 @@ namespace Djibus.Core.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Effort")
@@ -139,9 +145,11 @@ namespace Djibus.Core.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PM")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("PlannedEndDate")
@@ -160,6 +168,7 @@ namespace Djibus.Core.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ProjectStage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ProjectsGovernanceIssue")
@@ -172,15 +181,19 @@ namespace Djibus.Core.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("RessourceChis1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThemeStrategy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("projectStaffingRessourcesIssues")

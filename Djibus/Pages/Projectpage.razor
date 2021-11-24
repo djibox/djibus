@@ -1,0 +1,61 @@
+﻿@page "/projectpage"
+@using Djibus.Core.Models
+@inject AuthenticationStateProvider GetAuthStateAsync
+
+@inject IDbContextFactory<ApplicationDbContext> MyContextFactory
+
+@attribute [Authorize]
+
+<h3 class="alert alert-info">Projects : Liste des projets </h3>
+
+<TelerikGrid Data="@Projects"
+             Pageable="true"
+             Sortable="true"
+             Groupable="true"
+             OnCreate="CreateProject"
+             OnUpdate="UpdateProject"
+             OnDelete="DeleteProject"
+             EditMode="GridEditMode.Popup"
+             FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu" 
+             ShowColumnMenu="true">
+    <GridToolBar>
+        <GridCommandButton Command="Add" Icon="add">New Input</GridCommandButton>
+    </GridToolBar>
+    <GridColumns>
+        <GridColumn Field="@(nameof(Project.Name))" Title="Project"/>
+        <GridColumn Field="@(nameof(Project.PM))"/>
+        <GridColumn Field="@(nameof(Project.Customer))"/>
+        <GridColumn Field="@(nameof(Project.Beneficiary))"/>
+        <GridColumn Field="@(nameof(Project.Description))"/>
+        <GridColumn Field="@(nameof(Project.Type))"/>
+        <GridColumn Field="@(nameof(Project.RessourceChis1))" Title="Developer"/>
+        <GridColumn Field="@(nameof(Project.ApprovedBudget))"Title="Approved"/>
+        <GridColumn Field="@(nameof(Project.AllotedBudget))" Title="Alloted"/>
+        <GridColumn Field="@(nameof(Project.AvailableBudget))" Title="Available"/>
+        <GridColumn Field="@(nameof(Project.Effort))"/>
+        <GridColumn Field="@(nameof(Project.PlannedStartDate))" Visible="false" Editable="true"/>
+        <GridColumn Field="@(nameof(Project.PlannedEndDate))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ExpectedEndDate))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ActualStartDate))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ActualEndDate))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.Status))"/>
+        <GridColumn Field="@(nameof(Project.PourcentageAchievement))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ChallengesOrSolutions))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ProjectStage))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ThemeStrategy))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ChangeManNeeded))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ProjectsVendorExternalRessources))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ProjectsGovernanceIssue))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.projectUsersAvailabilityIssue))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.projectStaffingRessourcesIssues))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ProjectsRessourcesWithMultiplesAssignement))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ProjectProcurementIssues))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.ProjectDeliveryDelay))" Visible="false"/>
+        <GridColumn Field="@(nameof(Project.Comments))"/>
+        <GridCommandColumn>
+            <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">Actualiser</GridCommandButton>
+            <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
+            <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+        </GridCommandColumn>
+    </GridColumns>
+</TelerikGrid>

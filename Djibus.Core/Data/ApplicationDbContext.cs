@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Djibus.Core.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Djibus.Core.Data
@@ -9,5 +10,7 @@ namespace Djibus.Core.Data
             : base(options)
         {
         }
+
+        public DbSet<Project> Projects { get; set; }
     }
 }
