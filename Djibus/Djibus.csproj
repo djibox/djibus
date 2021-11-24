@@ -23,4 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Djibus.Core\Djibus.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Excels\" />
+  </ItemGroup>
 </Project>
