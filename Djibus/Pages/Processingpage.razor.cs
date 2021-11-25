@@ -24,6 +24,7 @@ namespace Djibus.Pages
         {
             var filename = @"C:\ExcelProcessing\Projects.xls";
             var personnes = new ExcelMapper(filename).Fetch<Core.ViewModels.ProjectModel>();
+            var number = personnes.Count();
         }
     }
 }
