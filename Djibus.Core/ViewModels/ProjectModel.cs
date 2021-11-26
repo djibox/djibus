@@ -9,31 +9,24 @@ namespace Djibus.Core.ViewModels
     public class ProjectModel
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
         public string? PM { get; set; }
         public string? Customer { get; set; }
         public string? Beneficiary { get; set; }
+        public string? Projects { get; set; }
         public string? Description { get; set; }
         public string? Type { get; set; }
         public string? RessourceChis1 { get; set; }
         public string? ApprovedBudget { get; set; }
         public string? AllotedBudget { get; set; }
         public string? AvailableBudget { get; set; }
-        public int Effort { get; set; }
-
+        public string? Effort { get; set; }
         public string? PlannedStartDate { get; set; }
-
         public string? PlannedEndDate { get; set; }
-
         public string? ExpectedEndDate { get; set; }
-
-        public string? ActualStartDate { get; set; }
-
         public string? ActualEndDate { get; set; }
-
+        public string? ActualStartDate { get; set; }
         public string? Status { get; set; }
         public string? PourcentageAchievement { get; set; }
-
         public string? ChallengesOrSolutions { get; set; }
         public string? ProjectStage { get; set; }
         public string? ThemeStrategy { get; set; }
