@@ -1,13 +1,18 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using Microsoft.AspNetCore.Http;
 
 namespace Djibus.Pages
 {
     public partial class Index : ComponentBase
     {
+        
         [Parameter]
         public string CurrentUser { get; set; }
         [Parameter]
         public string FullName { get; set; }
+
+        //private readonly List<Type> widgets = new() { typeof(Planningpage), typeof(Processingpage) };
 
         private async Task GetCurrentUserAsync()
         {

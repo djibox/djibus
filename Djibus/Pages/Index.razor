@@ -5,8 +5,10 @@
 
 <PageTitle>Index</PageTitle>
 
-<h4>@FullName, Bienvenue dans Djibus Project Portofolio Management ! You are connected as @CurrentUser</h4>
-
+<h4>@FullName, Bienvenue dans Djibus Project Portfolio Management ! You are connected as @CurrentUser</h4>
+@*@foreach(var widgetType in widgets){
+    <DynamicComponent Type="@widgetType"/>
+}*@
 <AuthorizeView>
 <Authorized>
     <iframe width="1140" height="641.25" src="https://app.powerbi.com/reportEmbed?reportId=dc1e27dc-6013-4e47-bacd-6271868983e5&autoAuth=true&ctid=727339d1-16ec-43cb-b6c3-5001fec5e907&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXdlc3QtZXVyb3BlLWItcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
