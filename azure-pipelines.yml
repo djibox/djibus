@@ -1,0 +1,7 @@
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Microsoft Azure Sponsorship(90065805-461b-4dcb-8c8e-fe8ea3329de5)'
+    appType: 'webApp'
+    appName: 'openrestaurant'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
