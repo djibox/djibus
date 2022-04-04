@@ -30,7 +30,20 @@
         </GridToolBar>
         <GridColumns>
             <GridColumn Field="@(nameof(Project.Name))" Title="Project" />
-            <GridColumn Field="@(nameof(Project.PM))" />
+            <GridColumn Field="@(nameof(Project.PM))">
+                <EditorTemplate>
+                    @{
+                        <TelerikAutoComplete Data="@users"
+                                             @bind-Value="@selectedValue"
+                                         Placeholder="Enter a product from the category"
+                                         
+                                         ValueField="@nameof(Project.Name)"
+                                         Id="products-autocomplete"
+                                         Width="100%">
+                        </TelerikAutoComplete>
+                    }
+                </EditorTemplate>
+            </GridColumn>
             <GridColumn Field="@(nameof(Project.Customer))" />
             <GridColumn Field="@(nameof(Project.Beneficiary))" />
             <GridColumn Field="@(nameof(Project.Description))" />

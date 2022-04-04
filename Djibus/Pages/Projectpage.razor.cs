@@ -8,13 +8,24 @@ namespace Djibus.Pages
     {
         List<Project> Projects = new();
         string proprio;
-
+        List<ApplicationUser> users;
+        string selectedValue;
         protected override async Task OnInitializedAsync()
         {
             var auth = await GetAuthStateAsync.GetAuthenticationStateAsync();
             var user = auth.User;
             proprio = user.Identity.Name;
             await LoadProjectsAsync();
+        }
+
+        public async Task<List<ApplicationUser>> LoadUsers(string SV)
+        {
+            SV = selectedValue;
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                users = await ctx.Users.Where(v=>v.FullName.StartsWith(selectedValue)).ToListAsync(); ;
+            }
+            return users;
         }
 
         public async Task LoadProjectsAsync()
