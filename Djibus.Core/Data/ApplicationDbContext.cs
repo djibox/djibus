@@ -12,5 +12,8 @@ namespace Djibus.Core.Data
         }
 
         public DbSet<Project> Projects { get; set; }
+        public DbSet<TypeDemande> TypeDemandes { get; set; }
+        public DbSet<Demande> Demandes { get; set; }
+        public DbSet<OrgUnit> OrgUnits { get; set; }
     }
 }
