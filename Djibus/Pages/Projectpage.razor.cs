@@ -4,7 +4,7 @@ using Telerik.Blazor.Components;
 
 namespace Djibus.Pages
 {
-    public partial class Projectpage:ComponentBase
+    public partial class Projectpage : ComponentBase
     {
         List<Project> Projects = new();
         string proprio;
@@ -23,7 +23,7 @@ namespace Djibus.Pages
             SV = selectedValue;
             using (var ctx = MyContextFactory.CreateDbContext())
             {
-                users = await ctx.Users.Where(v=>v.FullName.StartsWith(selectedValue)).ToListAsync(); ;
+                users = await ctx.Users.Where(v => v.FullName.StartsWith(selectedValue)).ToListAsync(); ;
             }
             return users;
         }

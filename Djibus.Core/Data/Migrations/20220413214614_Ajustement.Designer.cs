@@ -4,6 +4,7 @@ using Djibus.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Djibus.Core.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220413214614_Ajustement")]
+    partial class Ajustement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,18 +102,23 @@ namespace Djibus.Core.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Benefits")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BusinessNeed")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contact")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DependenciesIfAny")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExpectedDeliverables")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImpactOfNotDoingIt")
@@ -123,16 +130,18 @@ namespace Djibus.Core.Data.Migrations
                     b.Property<bool?>("IsServiceRequestUnique")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("NumberOfPotentialUsers")
+                    b.Property<long>("NumberOfPotentialUsers")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("OrgUnitId")
+                    b.Property<int>("OrgUnitId")
                         .HasColumnType("int");
 
                     b.Property<string>("PotentialSolution")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sponsor")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("StartDate")
@@ -432,7 +441,9 @@ namespace Djibus.Core.Data.Migrations
                 {
                     b.HasOne("Djibus.Core.Models.OrgUnit", "OrgUnit")
                         .WithMany("Demandes")
-                        .HasForeignKey("OrgUnitId");
+                        .HasForeignKey("OrgUnitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Djibus.Core.Models.TypeDemande", "TypeDemande")
                         .WithMany("Demandes")

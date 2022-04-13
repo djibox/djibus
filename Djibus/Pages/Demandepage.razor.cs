@@ -1,6 +1,103 @@
-﻿namespace Djibus.Pages
+﻿using Djibus.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using Telerik.Blazor.Components;
+
+namespace Djibus.Pages
 {
-    public partial class Demandpage
+    public partial class Demandepage
     {
+        List<Demande> Demandes = new();
+        string proprio;
+        string TypeDemandName;
+        List<ApplicationUser> users;
+        int selectedValue;
+
+        protected override async Task OnInitializedAsync()
+        {
+            var auth = await GetAuthStateAsync.GetAuthenticationStateAsync();
+            var user = auth.User;
+            proprio = user.Identity.Name;
+            await LoadDemandesAsync();
+        }
+
+        public string GetTypeDemandById(int id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element =  ctx.TypeDemandes.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    TypeDemandName =  element.DemandeTypeName;
+                }
+            }
+            return TypeDemandName;
+
+        }
+
+        public async Task LoadDemandesAsync()
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                Demandes = await ctx.Demandes.ToListAsync();
+            }
+        }
+
+        //public Project UpdateOnCreation(Project project)
+        //{
+        //    Commande.CreerPar = proprio;
+        //    Commande.ModifierPar = proprio;
+        //    Commande.DateCreation = DateTime.Now;
+        //    Commande.DateModification = DateTime.Now;
+        //    return Commande;
+        //}
+        //public Commande UpdateOnUpdate(Commande Commande)
+        //{
+        //    //entreprise.CreerPar = proprio;
+        //    Commande.ModifierPar = proprio;
+        //    //entreprise.DateCreation = DateTime.Now;
+        //    Commande.DateModification = DateTime.Now;
+        //    return Commande;
+        //}
+
+        public async Task CreateDemand(GridCommandEventArgs args)
+        {
+            var fam = args.Item as Demande;
+            fam.TypeDemandeId = selectedValue;
+            //fam = UpdateOnCreation(fam);
+            //fam.Proprietaire = proprio;
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                ctx.Demandes.Add(fam);
+                await ctx.SaveChangesAsync();
+                await LoadDemandesAsync();
+            }
+        }
+        public async Task UpdateDemand(GridCommandEventArgs args)
+        {
+            var fam = args.Item as Demande;
+            fam.TypeDemandeId = selectedValue;
+
+            //fam = UpdateOnUpdate(fam);
+            //entr.Proprietaire = proprio;
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                ctx.Demandes.Update(fam);
+                await ctx.SaveChangesAsync();
+                await LoadDemandesAsync();
+            }
+        }
+
+        public async Task DeleteDemand(GridCommandEventArgs args)
+        {
+            var fam = args.Item as Demande;
+            //entr = UpdateOnUpdate(entr);
+            //entr.Proprietaire = proprio;
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                ctx.Demandes.Remove(fam);
+                await ctx.SaveChangesAsync();
+                await LoadDemandesAsync();
+            }
+        }
     }
 }

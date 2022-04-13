@@ -1,6 +1,40 @@
 ﻿@page "/typedemandepage"
-<h3>Type Demande</h3>
+@using Djibus.Core.Models
+@inject AuthenticationStateProvider GetAuthStateAsync
 
-@code {
+@inject IDbContextFactory<ApplicationDbContext> MyContextFactory
 
-}
+@attribute [Authorize]
+
+<h3 class="alert alert-info">Type Demand</h3>
+<div class="table table-responsive">
+
+    <TelerikGrid Data="@TypeDemandes"
+                 ConfirmDelete="true"
+                 Resizable="true"
+                 Reorderable="true"
+                 SelectionMode="GridSelectionMode.Multiple"
+                 PageSize="10"
+                 Navigable="true"
+                 Pageable="true"
+                 Sortable="true"
+                 Groupable="true"
+                 OnCreate="CreateTypeDemand"
+                 OnUpdate="UpdateTypeDemand"
+                 OnDelete="DeleteTypeDemand"
+                 EditMode="GridEditMode.Popup"
+                 FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu"
+                 ShowColumnMenu="true">
+        <GridToolBar>
+            <GridCommandButton Command="Add" Icon="add">New Input</GridCommandButton>
+        </GridToolBar>
+        <GridColumns>
+            <GridColumn Field="@(nameof(TypeDemande.DemandeTypeName))" Title="Project" />          
+            <GridCommandColumn>
+                <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
+                <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
+                <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+            </GridCommandColumn>
+        </GridColumns>
+    </TelerikGrid>
+</div>
