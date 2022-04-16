@@ -27,5 +27,7 @@ namespace Djibus.Core.Models
         public string? ImpactOfNotDoingIt { get; set; }
         public string? PotentialSolution { get; set; }
         public string? DependenciesIfAny  { get; set; }
+        public int? PrgCommitteeId { get; set; }
+        public PrgCommittee PrgCommittee { get; set; }
     }
 }

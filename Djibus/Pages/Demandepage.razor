@@ -22,10 +22,10 @@
                  OnUpdate="UpdateDemand"
                  OnDelete="DeleteDemand"
                  EditMode="GridEditMode.Popup"
-                 FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu"
+                 FilterMode="GridFilterMode.FilterMenu"
                  ShowColumnMenu="true">
         <GridToolBar>
-            <GridCommandButton Command="Add" Icon="add">New Input</GridCommandButton>
+            <GridCommandButton Command="Add" Icon="add">New Demand</GridCommandButton>
         </GridToolBar>
         <GridColumns>
             <GridColumn Field="@(nameof(Demande.Title))" Title="Title" />
@@ -41,9 +41,10 @@
                         using (var ctx = MyContextFactory.CreateDbContext())
                         {
                             var _TypeDemand = ctx.TypeDemandes.ToList();
+                            var _demand = context as Demande;
+                            selectedValue = _demand.TypeDemandeId;
                             <TelerikDropDownList Data="@_TypeDemand"
-                                             @bind-Value="@selectedValue"
-                                         DefaultText="Demand Type"
+                                             @bind-Value="@_demand.TypeDemandeId"
                                          TextField="DemandeTypeName"
                                          ValueField="Id">
                             </TelerikDropDownList>
@@ -51,7 +52,65 @@
                     }
                 </EditorTemplate>
             </GridColumn>
-            <GridColumn Field="@(nameof(Demande.DependenciesIfAny))" Title="Dependencies If Any"/>
+            <GridColumn Field="@(nameof(Demande.Sponsor))" Title="Sponsor" />
+            <GridColumn Field="@(nameof(Demande.Contact))" Title="Contact" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.OrgUnitId))" Title="Org. Unit">
+                <Template>
+                    @{
+                        int? id = (context as Demande).OrgUnitId;
+                        <text>@GetOrgUnitById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _OrgUnit = ctx.OrgUnits.ToList();
+                            var _myorgunit = context as Demande;
+                            OrgUnitselectedValue = _myorgunit.OrgUnitId;
+                            <TelerikDropDownList Data="@_OrgUnit"
+                                             @bind-Value="@_myorgunit.OrgUnitId"
+                                         DefaultText="Org. Unit"
+                                         TextField="OrgUnitName"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
+            <GridColumn Field="@(nameof(Demande.StartDate))" Title="Date" DisplayFormat="{0:dd MMM yy}" Editable="false" />
+            <GridColumn Field="@(nameof(Demande.IsRequestTimeSensitive))" Title="Is Request Time Sensitive ?" />
+            <GridColumn Field="@(nameof(Demande.BusinessNeed))" Title="Business Need ?" />
+            <GridColumn Field="@(nameof(Demande.Benefits))" Title="Benefits ?" />
+            <GridColumn Field="@(nameof(Demande.ExpectedDeliverables))" Title="Expected Deliverables ?" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.NumberOfPotentialUsers))" Title="Number Of Potential Users ?" />
+            <GridColumn Field="@(nameof(Demande.IsServiceRequestUnique))" Title="Is Service Request Unique ?" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.ImpactOfNotDoingIt))" Title="Impact Of Not Doing It ?" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.PotentialSolution))" Title="Potential Solution" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.PrgCommitteeId))" Title="PRG" Visible="false">
+                <Template>
+                    @{
+                        int? id = (context as Demande).PrgCommitteeId;
+                        <text>@GetPRGById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _PrgList = ctx.PrgCommittees.ToList();
+                            var _myPrg = context as Demande;
+                            PrgselectedValue = _myPrg.PrgCommitteeId;
+                            <TelerikDropDownList Data="@_PrgList"
+                                             @bind-Value="@_myPrg.PrgCommitteeId"
+                                         DefaultText="PRG"
+                                         TextField="Libelle"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
             <GridCommandColumn>
                 <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
                 <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>

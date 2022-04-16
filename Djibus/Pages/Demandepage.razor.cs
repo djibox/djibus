@@ -9,8 +9,12 @@ namespace Djibus.Pages
         List<Demande> Demandes = new();
         string proprio;
         string TypeDemandName;
+        string OrgUnitName;
+        string PrgName;
         List<ApplicationUser> users;
         int selectedValue;
+        int? OrgUnitselectedValue;
+        int? PrgselectedValue;
 
         protected override async Task OnInitializedAsync()
         {
@@ -31,6 +35,33 @@ namespace Djibus.Pages
                 }
             }
             return TypeDemandName;
+
+        }
+        public string GetOrgUnitById(int? id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element = ctx.OrgUnits.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    OrgUnitName = element.OrgUnitName;
+                }
+            }
+            return OrgUnitName;
+
+        }
+
+        public string GetPRGById(int? id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element = ctx.PrgCommittees.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    PrgName = element.Libelle;
+                }
+            }
+            return PrgName;
 
         }
 
@@ -63,6 +94,9 @@ namespace Djibus.Pages
         {
             var fam = args.Item as Demande;
             fam.TypeDemandeId = selectedValue;
+            fam.OrgUnitId = OrgUnitselectedValue;
+            fam.StartDate = DateTime.Today;
+            fam.PrgCommitteeId = PrgselectedValue;
             //fam = UpdateOnCreation(fam);
             //fam.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())
@@ -76,6 +110,8 @@ namespace Djibus.Pages
         {
             var fam = args.Item as Demande;
             fam.TypeDemandeId = selectedValue;
+            fam.OrgUnitId = OrgUnitselectedValue;
+            fam.PrgCommitteeId = PrgselectedValue;
 
             //fam = UpdateOnUpdate(fam);
             //entr.Proprietaire = proprio;
