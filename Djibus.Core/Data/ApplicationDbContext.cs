@@ -16,6 +16,7 @@ namespace Djibus.Core.Data
         public DbSet<Demande> Demandes { get; set; }
         public DbSet<OrgUnit> OrgUnits { get; set; }
         public DbSet<PrgCommittee> PrgCommittees { get; set; }
+        public DbSet<ArdaCommittee> ArdaCommittees { get; set; }
         public DbSet<Developer> Developers { get; set; }
         public DbSet<EntrepriseArchitect> EntrepriseArchitects { get; set; }
         public DbSet<BusinessAnalyst> BusinessAnalysts { get; set; }

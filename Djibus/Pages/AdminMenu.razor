@@ -1,0 +1,112 @@
+﻿@page "/adminmenu"
+
+<AuthorizeView>
+    <Authorized>
+        <div class="col-md-3">
+
+
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            <TelerikCard>
+                                <CardHeader>
+                                    <CardTitle>Business Analysts </CardTitle>
+                                </CardHeader>
+                                <CardImage Src="https://www.akuiteo.com/hubfs/editeurs-avantages-club-utilisateur.jpg"></CardImage>
+                                <CardBody>
+                                    <CardTitle>
+                                        <NavLink class="nav-link" href="businessanalystpage">
+                                            <span class="oi oi-laptop" aria-hidden="true"></span> B. Analysts
+                                        </NavLink>
+                                    </CardTitle>
+                                    <CardSeparator></CardSeparator>
+                                </CardBody>
+                            </TelerikCard>
+                        </td>
+                        <td>
+                            <TelerikCard>
+                                <CardHeader>
+                                    <CardTitle>Developers </CardTitle>
+                                </CardHeader>
+                                <CardImage Src="data:image/png;base64,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"></CardImage>
+                                <CardBody>
+                                    <CardTitle>
+                                        <NavLink class="nav-link" href="developerpage">
+                                            <span class="oi oi-laptop" aria-hidden="true"></span> Developers
+                                        </NavLink>
+                                    </CardTitle>
+                                    <CardSeparator></CardSeparator>
+                                </CardBody>
+                            </TelerikCard>
+                        </td>
+                        <td>
+                            <TelerikCard>
+                                <CardHeader>
+                                    <CardTitle>EA Team </CardTitle>
+                                </CardHeader>
+                                <CardImage Src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy62TdbqyWuLSHV2ZqHJMR87mHUCZthDeIhQ&usqp=CAU"></CardImage>
+                                <CardBody>
+                                    <CardTitle>
+                                        <NavLink class="nav-link" href="entreprisearchitectpage">
+                                            <span class="oi oi-laptop" aria-hidden="true"></span> Architecture
+                                        </NavLink>
+                                    </CardTitle>
+                                    <CardSeparator></CardSeparator>
+                                </CardBody>
+                            </TelerikCard>
+                        </td>
+                        <td>
+                            <TelerikCard>
+                                <CardHeader>
+                                    <CardTitle>Import Template File </CardTitle>
+                                </CardHeader>
+                                <CardImage Src="https://dm3z1jexb3zz4.cloudfront.net/public/images/core/Template-Import.png?mtime=20200317213630"></CardImage>
+                                <CardBody>
+                                    <CardTitle>
+                                        <NavLink class="nav-link" href="processingpage">
+                                            <span class="oi oi-laptop" aria-hidden="true"></span> Templates
+                                        </NavLink>
+                                    </CardTitle>
+                                    <CardSeparator></CardSeparator>
+                                </CardBody>
+                            </TelerikCard>
+                        </td>
+                        <td>
+                            <TelerikCard>
+                                <CardHeader>
+                                    <CardTitle>PRG Meetings </CardTitle>
+                                </CardHeader>
+                                <CardImage Src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3f9Rihnm-js_VaWuPlul9YR_dc39m7IHJoA&usqp=CAU"></CardImage>
+                                <CardBody>
+                                    <CardTitle>
+                                        <NavLink class="nav-link" href="prgcommitteepage">
+                                            <span class="oi oi-laptop" aria-hidden="true"></span> PRG Meetings
+                                        </NavLink>
+                                    </CardTitle>
+                                    <CardSeparator></CardSeparator>
+                                </CardBody>
+                            </TelerikCard>
+                        </td>
+                        <td>
+                            <TelerikCard>
+                                <CardHeader>
+                                    <CardTitle>ARDA Meetings </CardTitle>
+                                </CardHeader>
+                                <CardImage Src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToTlbIOgNGt8wsYtvL1ZL54jhytC07_IJpwg&usqp=CAU"></CardImage>
+                                <CardBody>
+                                    <CardTitle>
+                                        <NavLink class="nav-link" href="ardacommitteepage">
+                                            <span class="oi oi-laptop" aria-hidden="true"></span> Arda Meetings
+                                        </NavLink>
+                                    </CardTitle>
+                                    <CardSeparator></CardSeparator>
+                                </CardBody>
+                            </TelerikCard>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </Authorized>
+</AuthorizeView>

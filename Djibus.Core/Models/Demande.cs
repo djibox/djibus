@@ -29,6 +29,8 @@ namespace Djibus.Core.Models
         public string? DependenciesIfAny  { get; set; }
         public int? PrgCommitteeId { get; set; }
         public PrgCommittee PrgCommittee { get; set; }
+        public int? ArdaCommitteeId { get; set; }
+        public ArdaCommittee ArdaCommittee { get; set; }
         public int? DeveloperId { get; set; }
         public Developer Developer { get; set; }
         public int? BusinessAnalystId { get; set; }

@@ -1,0 +1,66 @@
+﻿@page "/Ardacommitteepage"
+@using Djibus.Core.Models
+@inject AuthenticationStateProvider GetAuthStateAsync
+
+@inject IDbContextFactory<ApplicationDbContext> MyContextFactory
+
+@attribute [Authorize]
+
+<h3 class="alert alert-info">List ARDA</h3>
+<div class="table table-responsive">
+
+    <TelerikGrid Data="@ArdaCommittees"
+                 ConfirmDelete="true"
+                 Resizable="true"
+                 Reorderable="true"
+                 SelectionMode="GridSelectionMode.Multiple"
+                 PageSize="10"
+                 Navigable="true"
+                 Pageable="true"
+                 Sortable="true"
+                 Groupable="true"
+                 OnCreate="CreateArda"
+                 OnUpdate="UpdateArda"
+                 OnDelete="DeleteArda"
+                 EditMode="GridEditMode.Popup"
+                 FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu"
+                 ShowColumnMenu="true">
+        <GridToolBar>
+            <GridCommandButton Command="Add" Icon="add">New ARDA</GridCommandButton>
+        </GridToolBar>
+        <GridColumns>
+            <GridColumn Field="@(nameof(ArdaCommittee.Libelle))" Title="Title" />
+            <GridColumn Field="@(nameof(ArdaCommittee.DateArda))" Title="Date" DisplayFormat="{0:dd MMM yy}" />
+            <GridCommandColumn>
+                <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
+                <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
+                <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+            </GridCommandColumn>
+        </GridColumns>
+        <DetailTemplate>
+            @{
+                var _ArdaCommittee = context as ArdaCommittee;
+                var _AllDemandes = _ArdaCommittee.Demandes;
+
+                <TelerikGrid Data="@_AllDemandes"
+                         Height="300px"
+                         Pageable="true"
+                         Sortable="true"
+                         PageSize="5">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Demande.Title) Title="Title" />
+                        <GridColumn Field="@(nameof(Demande.StartDate))" Title="Date" DisplayFormat="{0:dd MMM yy}" Editable="false" />
+                        <GridColumn Field="@(nameof(Demande.IsRequestTimeSensitive))" Title="Is Request Time Sensitive ?" />
+                        <GridColumn Field="@(nameof(Demande.BusinessNeed))" Title="Business Need ?" />
+                        <GridColumn Field="@(nameof(Demande.Benefits))" Title="Benefits ?" />
+                        <GridColumn Field="@(nameof(Demande.ExpectedDeliverables))" Title="Expected Deliverables ?" Visible="false" />
+                        <GridColumn Field="@(nameof(Demande.NumberOfPotentialUsers))" Title="Number Of Potential Users ?" />
+                        <GridColumn Field="@(nameof(Demande.IsServiceRequestUnique))" Title="Is Service Request Unique ?" Visible="false" />
+                        <GridColumn Field="@(nameof(Demande.ImpactOfNotDoingIt))" Title="Impact Of Not Doing It ?" Visible="false" />
+                        <GridColumn Field="@(nameof(Demande.PotentialSolution))" Title="Potential Solution" Visible="false" />
+                    </GridColumns>
+                </TelerikGrid>
+            }
+        </DetailTemplate>
+    </TelerikGrid>
+</div>

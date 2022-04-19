@@ -11,6 +11,7 @@ namespace Djibus.Pages
         string TypeDemandName;
         string OrgUnitName;
         string PrgName;
+        string ArdaName;
         string DevName;
         string EaName;
         string BaName;
@@ -18,6 +19,7 @@ namespace Djibus.Pages
         int selectedValue;
         int? OrgUnitselectedValue;
         int? PrgselectedValue;
+        int? ArdaselectedValue;
         int? BaselectedValue;
         int? EaselectedValue;
         int? DevselectedValue;
@@ -68,6 +70,19 @@ namespace Djibus.Pages
                 }
             }
             return PrgName;
+
+        }
+        public string GetARDAById(int? id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element = ctx.ArdaCommittees.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    ArdaName = element.Libelle;
+                }
+            }
+            return ArdaName;
 
         }
 
@@ -143,6 +158,7 @@ namespace Djibus.Pages
             fam.OrgUnitId = OrgUnitselectedValue;
             fam.StartDate = DateTime.Today;
             fam.PrgCommitteeId = PrgselectedValue;
+            fam.ArdaCommitteeId = ArdaselectedValue;
             fam.DeveloperId = DevselectedValue;
             fam.BusinessAnalystId = BaselectedValue;
             fam.EntrepriseArchitectId = EaselectedValue;
@@ -161,6 +177,7 @@ namespace Djibus.Pages
             fam.TypeDemandeId = selectedValue;
             fam.OrgUnitId = OrgUnitselectedValue;
             fam.PrgCommitteeId = PrgselectedValue;
+            fam.ArdaCommitteeId = ArdaselectedValue;
             fam.DeveloperId = DevselectedValue;
             fam.BusinessAnalystId = BaselectedValue;
             fam.EntrepriseArchitectId = EaselectedValue;

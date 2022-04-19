@@ -87,7 +87,7 @@
             <GridColumn Field="@(nameof(Demande.IsServiceRequestUnique))" Title="Is Service Request Unique" Visible="false" />
             <GridColumn Field="@(nameof(Demande.ImpactOfNotDoingIt))" Title="Impact Of Not Doing It" Visible="false" />
             <GridColumn Field="@(nameof(Demande.PotentialSolution))" Title="Potential Solution" Visible="false" />
-            <GridColumn Field="@(nameof(Demande.PrgCommitteeId))" Title="PRG" Visible="true">
+            <GridColumn Field="@(nameof(Demande.PrgCommitteeId))" Title="PRG" Visible="false">
                 <Template>
                     @{
                         int? id = (context as Demande).PrgCommitteeId;
@@ -104,6 +104,30 @@
                             <TelerikDropDownList Data="@_PrgList"
                                              @bind-Value="@_myPrg.PrgCommitteeId"
                                          DefaultText="PRG"
+                                         TextField="Libelle"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
+                        <GridColumn Field="@(nameof(Demande.ArdaCommitteeId))" Title="ARDA" Visible="false">
+                <Template>
+                    @{
+                        int? id = (context as Demande).ArdaCommitteeId;
+                        <text>@GetARDAById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _ArdaList = ctx.ArdaCommittees.ToList();
+                            var _myArda = context as Demande;
+                            ArdaselectedValue = _myArda.ArdaCommitteeId;
+                            <TelerikDropDownList Data="@_ArdaList"
+                                             @bind-Value="@_myArda.ArdaCommitteeId"
+                                         DefaultText="ARDA"
                                          TextField="Libelle"
                                          ValueField="Id">
                             </TelerikDropDownList>
