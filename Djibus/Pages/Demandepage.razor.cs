@@ -11,10 +11,16 @@ namespace Djibus.Pages
         string TypeDemandName;
         string OrgUnitName;
         string PrgName;
+        string DevName;
+        string EaName;
+        string BaName;
         List<ApplicationUser> users;
         int selectedValue;
         int? OrgUnitselectedValue;
         int? PrgselectedValue;
+        int? BaselectedValue;
+        int? EaselectedValue;
+        int? DevselectedValue;
 
         protected override async Task OnInitializedAsync()
         {
@@ -65,6 +71,46 @@ namespace Djibus.Pages
 
         }
 
+        public string GetDevById(int? id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element = ctx.Developers.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    DevName = element.FullName;
+                }
+            }
+            return DevName;
+
+        }
+        public string GetBaById(int? id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element = ctx.BusinessAnalysts.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    BaName = element.FullName;
+                }
+            }
+            return BaName;
+
+        }
+        public string GetEaById(int? id)
+        {
+            using (var ctx = MyContextFactory.CreateDbContext())
+            {
+                var element = ctx.EntrepriseArchitects.FirstOrDefault(f => f.Id.Equals(id));
+                if (element != null)
+                {
+                    EaName = element.FullName;
+                }
+            }
+            return EaName;
+
+        }
+
         public async Task LoadDemandesAsync()
         {
             using (var ctx = MyContextFactory.CreateDbContext())
@@ -97,6 +143,9 @@ namespace Djibus.Pages
             fam.OrgUnitId = OrgUnitselectedValue;
             fam.StartDate = DateTime.Today;
             fam.PrgCommitteeId = PrgselectedValue;
+            fam.DeveloperId = DevselectedValue;
+            fam.BusinessAnalystId = BaselectedValue;
+            fam.EntrepriseArchitectId = EaselectedValue;
             //fam = UpdateOnCreation(fam);
             //fam.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())
@@ -112,6 +161,9 @@ namespace Djibus.Pages
             fam.TypeDemandeId = selectedValue;
             fam.OrgUnitId = OrgUnitselectedValue;
             fam.PrgCommitteeId = PrgselectedValue;
+            fam.DeveloperId = DevselectedValue;
+            fam.BusinessAnalystId = BaselectedValue;
+            fam.EntrepriseArchitectId = EaselectedValue;
 
             //fam = UpdateOnUpdate(fam);
             //entr.Proprietaire = proprio;

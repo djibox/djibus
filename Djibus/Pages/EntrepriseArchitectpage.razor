@@ -1,0 +1,42 @@
+﻿@page "/entreprisearchitectpage"
+
+@using Djibus.Core.Models
+@inject AuthenticationStateProvider GetAuthStateAsync
+
+@inject IDbContextFactory<ApplicationDbContext> MyContextFactory
+
+@attribute [Authorize]
+
+<h3 class="alert alert-info">EA Team </h3>
+<div class="table table-responsive">
+
+    <TelerikGrid Data="@EntrepriseArchitects"
+                 ConfirmDelete="true"
+                 Resizable="true"
+                 Reorderable="true"
+                 SelectionMode="GridSelectionMode.Multiple"
+                 PageSize="10"
+                 Navigable="true"
+                 Pageable="true"
+                 Sortable="true"
+                 Groupable="true"
+                 OnCreate="CreateEa"
+                 OnUpdate="UpdateEa"
+                 OnDelete="DeleteEa"
+                 EditMode="GridEditMode.Popup"
+                 FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu"
+                 ShowColumnMenu="true">
+        <GridToolBar>
+            <GridCommandButton Command="Add" Icon="add">New EA Team Member</GridCommandButton>
+        </GridToolBar>
+        <GridColumns>
+            <GridColumn Field="@(nameof(EntrepriseArchitect.FullName))" Title="Full Name" />          
+            <GridColumn Field="@(nameof(EntrepriseArchitect.Email))" Title="Email" />          
+            <GridCommandColumn>
+                <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
+                <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
+                <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+            </GridCommandColumn>
+        </GridColumns>
+    </TelerikGrid>
+</div>

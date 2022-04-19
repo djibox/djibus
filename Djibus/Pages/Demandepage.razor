@@ -111,6 +111,78 @@
                     }
                 </EditorTemplate>
             </GridColumn>
+            <GridColumn Field="@(nameof(Demande.DeveloperId))" Title="Developer" Visible="false">
+                <Template>
+                    @{
+                        int? id = (context as Demande).DeveloperId;
+                        <text>@GetDevById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _DevList = ctx.Developers.ToList();
+                            var _myPrg = context as Demande;
+                            DevselectedValue = _myPrg.DeveloperId;
+                            <TelerikDropDownList Data="@_DevList"
+                                             @bind-Value="@_myPrg.DeveloperId"
+                                         DefaultText="Developer"
+                                         TextField="FullName"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
+            <GridColumn Field="@(nameof(Demande.BusinessAnalystId))" Title="B. Analyst" Visible="false">
+                <Template>
+                    @{
+                        int? id = (context as Demande).BusinessAnalystId;
+                        <text>@GetBaById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _BaList = ctx.BusinessAnalysts.ToList();
+                            var _myPrg = context as Demande;
+                            BaselectedValue = _myPrg.BusinessAnalystId;
+                            <TelerikDropDownList Data="@_BaList"
+                                             @bind-Value="@_myPrg.BusinessAnalystId"
+                                         DefaultText="B. Analyst"
+                                         TextField="FullName"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
+            <GridColumn Field="@(nameof(Demande.EntrepriseArchitectId))" Title="EA Member" Visible="false">
+                <Template>
+                    @{
+                        int? id = (context as Demande).EntrepriseArchitectId;
+                        <text>@GetEaById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _EaList = ctx.EntrepriseArchitects.ToList();
+                            var _myPrg = context as Demande;
+                            EaselectedValue = _myPrg.EntrepriseArchitectId;
+                            <TelerikDropDownList Data="@_EaList"
+                                             @bind-Value="@_myPrg.EntrepriseArchitectId"
+                                         DefaultText="EA Member"
+                                         TextField="FullName"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
             <GridCommandColumn>
                 <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
                 <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>

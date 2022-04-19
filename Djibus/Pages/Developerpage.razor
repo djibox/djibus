@@ -1,0 +1,41 @@
+﻿@page "/developerpage"
+@using Djibus.Core.Models
+@inject AuthenticationStateProvider GetAuthStateAsync
+
+@inject IDbContextFactory<ApplicationDbContext> MyContextFactory
+
+@attribute [Authorize]
+
+<h3 class="alert alert-info">Developers </h3>
+<div class="table table-responsive">
+
+    <TelerikGrid Data="@Developers"
+                 ConfirmDelete="true"
+                 Resizable="true"
+                 Reorderable="true"
+                 SelectionMode="GridSelectionMode.Multiple"
+                 PageSize="10"
+                 Navigable="true"
+                 Pageable="true"
+                 Sortable="true"
+                 Groupable="true"
+                 OnCreate="CreateDev"
+                 OnUpdate="UpdateDev"
+                 OnDelete="DeleteDev"
+                 EditMode="GridEditMode.Popup"
+                 FilterMode="Telerik.Blazor.GridFilterMode.FilterMenu"
+                 ShowColumnMenu="true">
+        <GridToolBar>
+            <GridCommandButton Command="Add" Icon="add">New Dev</GridCommandButton>
+        </GridToolBar>
+        <GridColumns>
+            <GridColumn Field="@(nameof(Developer.FullName))" Title="Full Name" />          
+            <GridColumn Field="@(nameof(Developer.Email))" Title="Email" />          
+            <GridCommandColumn>
+                <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
+                <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
+                <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+            </GridCommandColumn>
+        </GridColumns>
+    </TelerikGrid>
+</div>
