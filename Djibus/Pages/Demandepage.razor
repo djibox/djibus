@@ -79,15 +79,15 @@
                 </EditorTemplate>
             </GridColumn>
             <GridColumn Field="@(nameof(Demande.StartDate))" Title="Date" DisplayFormat="{0:dd MMM yy}" Editable="false" />
-            <GridColumn Field="@(nameof(Demande.IsRequestTimeSensitive))" Title="Is Request Time Sensitive ?" />
-            <GridColumn Field="@(nameof(Demande.BusinessNeed))" Title="Business Need ?" />
-            <GridColumn Field="@(nameof(Demande.Benefits))" Title="Benefits ?" />
-            <GridColumn Field="@(nameof(Demande.ExpectedDeliverables))" Title="Expected Deliverables ?" Visible="false" />
-            <GridColumn Field="@(nameof(Demande.NumberOfPotentialUsers))" Title="Number Of Potential Users ?" />
-            <GridColumn Field="@(nameof(Demande.IsServiceRequestUnique))" Title="Is Service Request Unique ?" Visible="false" />
-            <GridColumn Field="@(nameof(Demande.ImpactOfNotDoingIt))" Title="Impact Of Not Doing It ?" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.IsRequestTimeSensitive))" Title="Is Request Time Sensitive" />
+            <GridColumn Field="@(nameof(Demande.BusinessNeed))" Title="Business Need" />
+            <GridColumn Field="@(nameof(Demande.Benefits))" Title="Benefits" />
+            <GridColumn Field="@(nameof(Demande.ExpectedDeliverables))" Title="Expected Deliverables" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.NumberOfPotentialUsers))" Title="Number Of Potential Users" />
+            <GridColumn Field="@(nameof(Demande.IsServiceRequestUnique))" Title="Is Service Request Unique" Visible="false" />
+            <GridColumn Field="@(nameof(Demande.ImpactOfNotDoingIt))" Title="Impact Of Not Doing It" Visible="false" />
             <GridColumn Field="@(nameof(Demande.PotentialSolution))" Title="Potential Solution" Visible="false" />
-            <GridColumn Field="@(nameof(Demande.PrgCommitteeId))" Title="PRG" Visible="false">
+            <GridColumn Field="@(nameof(Demande.PrgCommitteeId))" Title="PRG" Visible="true">
                 <Template>
                     @{
                         int? id = (context as Demande).PrgCommitteeId;
