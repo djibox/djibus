@@ -12,4 +12,3 @@ namespace Djibus.Core.Models
 		public ICollection<Demande> Demandes { get; set; }
 	}
 }
-
