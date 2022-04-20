@@ -56,6 +56,10 @@ namespace Djibus.Pages
         public async Task CreateArda(GridCommandEventArgs args)
         {
             var fam = args.Item as ArdaCommittee;
+            fam.CreateBy = proprio;
+            fam.UpdateBy = proprio;
+            fam.CreatedDate = DateTime.Now;
+            fam.UpdatedDate = DateTime.Now;
             //fam = UpdateOnCreation(fam);
             //fam.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())
@@ -68,6 +72,8 @@ namespace Djibus.Pages
         public async Task UpdateArda(GridCommandEventArgs args)
         {
             var fam = args.Item as ArdaCommittee;
+            fam.UpdateBy = proprio;
+            fam.UpdatedDate = DateTime.Now;
             //fam = UpdateOnUpdate(fam);
             //entr.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())

@@ -55,6 +55,10 @@ namespace Djibus.Pages
         public async Task CreateDev(GridCommandEventArgs args)
         {
             var fam = args.Item as Developer;
+            fam.CreateBy = proprio;
+            fam.UpdateBy = proprio;
+            fam.CreatedDate = DateTime.Now;
+            fam.UpdatedDate = DateTime.Now;
             //fam = UpdateOnCreation(fam);
             //fam.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())
@@ -67,6 +71,8 @@ namespace Djibus.Pages
         public async Task UpdateDev(GridCommandEventArgs args)
         {
             var fam = args.Item as Developer;
+            fam.UpdateBy = proprio;
+            fam.UpdatedDate = DateTime.Now;
             //fam = UpdateOnUpdate(fam);
             //entr.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())

@@ -131,6 +131,13 @@ namespace Djibus.Pages
             using (var ctx = MyContextFactory.CreateDbContext())
             {
                 Demandes = await ctx.Demandes.ToListAsync();
+                //SelectedValue = null;
+                OrgUnitselectedValue = null;
+                PrgselectedValue = null;
+                ArdaselectedValue = null;
+                BaselectedValue = null;
+                EaselectedValue = null;
+                DevselectedValue = null;
             }
         }
 
@@ -162,6 +169,10 @@ namespace Djibus.Pages
             fam.DeveloperId = DevselectedValue;
             fam.BusinessAnalystId = BaselectedValue;
             fam.EntrepriseArchitectId = EaselectedValue;
+            fam.CreateBy = proprio;
+            fam.UpdateBy = proprio;
+            fam.CreatedDate = DateTime.Now;
+            fam.UpdatedDate = DateTime.Now;
             //fam = UpdateOnCreation(fam);
             //fam.Proprietaire = proprio;
             using (var ctx = MyContextFactory.CreateDbContext())
@@ -181,6 +192,8 @@ namespace Djibus.Pages
             fam.DeveloperId = DevselectedValue;
             fam.BusinessAnalystId = BaselectedValue;
             fam.EntrepriseArchitectId = EaselectedValue;
+            fam.UpdateBy = proprio;
+            fam.UpdatedDate = DateTime.Now;
 
             //fam = UpdateOnUpdate(fam);
             //entr.Proprietaire = proprio;

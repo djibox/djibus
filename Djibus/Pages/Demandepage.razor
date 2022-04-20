@@ -24,7 +24,12 @@
                  EditMode="GridEditMode.Popup"
                  FilterMode="GridFilterMode.FilterMenu"
                  ShowColumnMenu="true">
+        <GridSettings>
+            <GridValidationSettings Enabled="true">
+            </GridValidationSettings>
+        </GridSettings>
         <GridToolBar>
+            <GridCommandButton Command="ExcelExport">Export To Excel</GridCommandButton>
             <GridCommandButton Command="Add" Icon="add">New Demand</GridCommandButton>
         </GridToolBar>
         <GridColumns>
@@ -111,7 +116,7 @@
                     }
                 </EditorTemplate>
             </GridColumn>
-                        <GridColumn Field="@(nameof(Demande.ArdaCommitteeId))" Title="ARDA" Visible="false">
+            <GridColumn Field="@(nameof(Demande.ArdaCommitteeId))" Title="ARDA" Visible="false">
                 <Template>
                     @{
                         int? id = (context as Demande).ArdaCommitteeId;

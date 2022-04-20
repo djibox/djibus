@@ -1,12 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Djibus.Core.CommonEntities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Djibus.Core.Models
 {
-    public class Demande
+    public class Demande : CommonProperty
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Enter a Title")]
         [DataType(DataType.MultilineText)]
         public string Title { get; set; }
+        [Required(ErrorMessage = "Enter a Type")]
         public int TypeDemandeId { get; set; }
         public TypeDemande TypeDemande { get; set; }
         public string? Sponsor { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Djibus.Core.CommonEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Djibus.Core.Models
 {
-    public class PrgCommittee
+    public class PrgCommittee : CommonProperty
     {
         public int Id { get; set; }
         public string Libelle { get; set; }

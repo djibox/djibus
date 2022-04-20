@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Djibus.Core.CommonEntities;
+using System;
 namespace Djibus.Core.Models
 {
-	public class Developer
-	{
+	public class Developer: CommonProperty
+    {
 		public Developer()
 		{
 		}

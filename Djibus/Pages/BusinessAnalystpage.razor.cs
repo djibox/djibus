@@ -55,8 +55,11 @@ namespace Djibus.Pages
         public async Task CreateBa(GridCommandEventArgs args)
         {
             var fam = args.Item as BusinessAnalyst;
-            //fam = UpdateOnCreation(fam);
-            //fam.Proprietaire = proprio;
+            fam.CreateBy = proprio;
+            fam.UpdateBy = proprio;
+            fam.CreatedDate = DateTime.Now;
+            fam.UpdatedDate = DateTime.Now;
+
             using (var ctx = MyContextFactory.CreateDbContext())
             {
                 ctx.BusinessAnalysts.Add(fam);
@@ -67,8 +70,9 @@ namespace Djibus.Pages
         public async Task UpdateBa(GridCommandEventArgs args)
         {
             var fam = args.Item as BusinessAnalyst;
-            //fam = UpdateOnUpdate(fam);
-            //entr.Proprietaire = proprio;
+            fam.UpdateBy = proprio;
+            fam.UpdatedDate = DateTime.Now;
+
             using (var ctx = MyContextFactory.CreateDbContext())
             {
                 ctx.BusinessAnalysts.Update(fam);

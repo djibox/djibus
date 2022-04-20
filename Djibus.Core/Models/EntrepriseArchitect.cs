@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Djibus.Core.CommonEntities;
+using System;
 namespace Djibus.Core.Models
 {
-	public class EntrepriseArchitect
+	public class EntrepriseArchitect : CommonProperty
 	{
 		public EntrepriseArchitect()
 		{
