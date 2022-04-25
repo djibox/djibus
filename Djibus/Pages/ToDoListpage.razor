@@ -1,0 +1,77 @@
+﻿@page "/todolistpage"
+@page "/todolistpage/{id}"
+
+@using Djibus.Core.Models
+@inject AuthenticationStateProvider GetAuthStateAsync
+
+@inject IDbContextFactory<ApplicationDbContext> MyContextFactory
+
+@attribute [Authorize]
+
+<h3 class="alert alert-info">All Activities</h3>
+<div class="table table-responsive">
+    <TelerikGrid Data="@Activities"
+                 ConfirmDelete="true"
+                 Resizable="true"
+                 Reorderable="true"
+                 SelectionMode="GridSelectionMode.Multiple"
+                 PageSize="10"
+                 Navigable="true"
+                 Pageable="true"
+                 Sortable="true"
+                 Groupable="true"
+                 OnCreate="CreateActivity"
+                 OnUpdate="UpdateActivity"
+                 OnDelete="DeleteActivity"
+                 EditMode="GridEditMode.Popup"
+                 FilterMode="GridFilterMode.FilterMenu"
+                 ShowColumnMenu="true">
+        <GridSettings>
+            <GridValidationSettings Enabled="true">
+            </GridValidationSettings>
+        </GridSettings>
+        <GridToolBar>
+            <GridCommandButton Command="ExcelExport">Export To Excel</GridCommandButton>
+            <GridCommandButton Command="Add" Icon="add">New Activity</GridCommandButton>
+        </GridToolBar>
+        <GridColumns>
+            <GridColumn Field="@(nameof(Activity.Description))" Title="Description">
+                <EditorTemplate>
+                    @{
+                        var item = (context as Activity);
+                        <TelerikTextArea @bind-Value="@item.Description" AutoSize="true" />
+                    }
+                </EditorTemplate>
+            </GridColumn>
+            <GridColumn Field="@(nameof(Activity.DemandeId))" Title="Demand Name">
+                <Template>
+                    @{
+                        int? id = (context as Activity).DemandeId;
+                        <text>@GetDemandById(id)</text>
+                    }
+                </Template>
+                <EditorTemplate>
+                    @{
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _Demandes = ctx.Demandes.ToList();
+                            var _activity = context as Activity;
+                            selectedValue = _activity.DemandeId;
+                            <TelerikDropDownList Data="@_Demandes"
+                                             @bind-Value="@_activity.DemandeId"
+                                         TextField="Title"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
+                        }
+                    }
+                </EditorTemplate>
+            </GridColumn>
+            <GridColumn Field="@(nameof(Activity.ActivityDate))" Title="Date" DisplayFormat="{0:dd MMM yy}"/>           
+            <GridCommandColumn>
+                <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
+                <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
+                <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+            </GridCommandColumn>
+        </GridColumns>
+    </TelerikGrid>
+</div>

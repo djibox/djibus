@@ -33,7 +33,14 @@
             <GridCommandButton Command="Add" Icon="add">New Demand</GridCommandButton>
         </GridToolBar>
         <GridColumns>
-            <GridColumn Field="@(nameof(Demande.Title))" Title="Title" />
+            <GridColumn Field="@(nameof(Demande.Title))" Title="Title">
+                <EditorTemplate>
+                    @{
+                        var item = (context as Demande);
+                        <TelerikTextArea @bind-Value="@item.Title" AutoSize="true" />
+                    }
+                </EditorTemplate>
+            </GridColumn>
             <GridColumn Field="@(nameof(Demande.TypeDemandeId))" Title="Type">
                 <Template>
                     @{
@@ -216,7 +223,34 @@
                 <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
                 <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
                 <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
+                <GridCommandButton Icon="eye">
+                    @{
+                        var element = (context as Demande);
+                        <a href="@($"todolistpage/{element.Id}")">
+                            Tasks
+                        </a>
+                    }
+                </GridCommandButton>
             </GridCommandColumn>
         </GridColumns>
+        <DetailTemplate>
+            @{
+                var _Demand = context as Demande;
+                var _AllActivities = _Demand.Activities;
+                Console.Write("Yes");
+                <TelerikGrid Data="@_AllActivities"
+                         Height="300px"
+                         Pageable="true"
+                         Sortable="true"
+                         Groupable="true"
+                         PageSize="5">
+                    <GridColumns>
+                        <GridColumn Field=@nameof(Activity.Description) Title="Description" />
+                        <GridColumn Field="@(nameof(Activity.CreatedDate))" Title="Date" DisplayFormat="{0:dd MMM yy}" Editable="false" />
+                        <GridColumn Field=@nameof(Activity.CreateBy) Title="Owner" />
+                    </GridColumns>
+                </TelerikGrid>
+            }
+        </DetailTemplate>
     </TelerikGrid>
 </div>

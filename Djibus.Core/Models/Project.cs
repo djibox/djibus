@@ -49,5 +49,6 @@ namespace Djibus.Core.Models
         [DataType(DataType.MultilineText)]
         public string? Comments { get; set; }
 
+
     }
 }

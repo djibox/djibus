@@ -4,6 +4,7 @@ using Djibus.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Djibus.Core.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220425125332_Activities")]
+    partial class Activities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,6 +124,9 @@ namespace Djibus.Core.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UpdateBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -132,6 +137,8 @@ namespace Djibus.Core.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DemandeId");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Activities");
                 });
@@ -743,7 +750,13 @@ namespace Djibus.Core.Data.Migrations
                         .WithMany("Activities")
                         .HasForeignKey("DemandeId");
 
+                    b.HasOne("Djibus.Core.Models.Project", "Project")
+                        .WithMany("Activities")
+                        .HasForeignKey("ProjectId");
+
                     b.Navigation("Demande");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Djibus.Core.Models.Demande", b =>
@@ -877,6 +890,11 @@ namespace Djibus.Core.Data.Migrations
             modelBuilder.Entity("Djibus.Core.Models.PrgCommittee", b =>
                 {
                     b.Navigation("Demandes");
+                });
+
+            modelBuilder.Entity("Djibus.Core.Models.Project", b =>
+                {
+                    b.Navigation("Activities");
                 });
 
             modelBuilder.Entity("Djibus.Core.Models.TypeDemande", b =>

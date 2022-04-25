@@ -40,6 +40,7 @@ namespace Djibus.Core.Models
         public BusinessAnalyst BusinessAnalyst { get; set; }
         public int? EntrepriseArchitectId { get; set; }
         public EntrepriseArchitect EntrepriseArchitect { get; set; }
+        public IEnumerable<Activity> Activities { get; set; }
 
 
     }
