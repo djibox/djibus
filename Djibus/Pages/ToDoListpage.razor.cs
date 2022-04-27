@@ -19,6 +19,7 @@ namespace Djibus.Pages
             var auth = await GetAuthStateAsync.GetAuthenticationStateAsync();
             var user = auth.User;
             proprio = user.Identity.Name;
+            DemandName = GetDemandById(int.Parse(id));
             await LoadActivitiesAsync(id);
         }
 

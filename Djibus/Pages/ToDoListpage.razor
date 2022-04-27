@@ -8,7 +8,7 @@
 
 @attribute [Authorize]
 
-<h3 class="alert alert-info">All Activities</h3>
+<h3 class="alert alert-info">@DemandName</h3>
 <div class="table table-responsive">
     <TelerikGrid Data="@Activities"
                  ConfirmDelete="true"
@@ -35,19 +35,11 @@
             <GridCommandButton Command="Add" Icon="add">New Activity</GridCommandButton>
         </GridToolBar>
         <GridColumns>
-            <GridColumn Field="@(nameof(Activity.Description))" Title="Description">
-                <EditorTemplate>
-                    @{
-                        var item = (context as Activity);
-                        <TelerikTextArea @bind-Value="@item.Description" AutoSize="true" />
-                    }
-                </EditorTemplate>
-            </GridColumn>
-            <GridColumn Field="@(nameof(Activity.DemandeId))" Title="Demand Name">
+            <GridColumn Field="@(nameof(Activity.DemandeId))" Title="Demand Name" Visible="false">
                 <Template>
                     @{
                         int? id = (context as Activity).DemandeId;
-                        <text>@GetDemandById(id)</text>
+                            <text>@GetDemandById(id)</text>
                     }
                 </Template>
                 <EditorTemplate>
@@ -57,16 +49,24 @@
                             var _Demandes = ctx.Demandes.ToList();
                             var _activity = context as Activity;
                             selectedValue = _activity.DemandeId;
-                            <TelerikDropDownList Data="@_Demandes"
-                                             @bind-Value="@_activity.DemandeId"
-                                         TextField="Title"
-                                         ValueField="Id">
-                            </TelerikDropDownList>
+                                <TelerikDropDownList Data="@_Demandes"
+                                                 @bind-Value="@_activity.DemandeId"
+                                                 TextField="Title"
+                                                 ValueField="Id">
+                                </TelerikDropDownList>
                         }
                     }
                 </EditorTemplate>
             </GridColumn>
-            <GridColumn Field="@(nameof(Activity.ActivityDate))" Title="Date" DisplayFormat="{0:dd MMM yy}"/>           
+            <GridColumn Field="@(nameof(Activity.Description))" Title="Description">
+                <EditorTemplate>
+                    @{
+                        var item = (context as Activity);
+                            <TelerikTextArea @bind-Value="@item.Description" AutoSize="true" />
+                    }
+                </EditorTemplate>
+            </GridColumn>
+            <GridColumn Field="@(nameof(Activity.ActivityDate))" Title="Date" DisplayFormat="{0:dd MMM yy}" />
             <GridCommandColumn>
                 <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
                 <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
