@@ -130,7 +130,7 @@ namespace Djibus.Pages
         {
             using (var ctx = MyContextFactory.CreateDbContext())
             {
-                Demandes = await ctx.Demandes.ToListAsync();
+                Demandes = await ctx.Demandes.Include(a=>a.Activities).ToListAsync();
                 //SelectedValue = null;
                 OrgUnitselectedValue = null;
                 PrgselectedValue = null;

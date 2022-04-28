@@ -35,7 +35,7 @@
             <GridCommandButton Command="Add" Icon="add">New Activity</GridCommandButton>
         </GridToolBar>
         <GridColumns>
-            <GridColumn Field="@(nameof(Activity.DemandeId))" Title="Demand Name" Visible="false">
+            <GridColumn Field="@(nameof(Activity.DemandeId))" Title="Demand Name" Visible="true">
                 <Template>
                     @{
                         int? id = (context as Activity).DemandeId;
