@@ -1,5 +1,4 @@
-﻿@page "/todolistpage"
-@page "/todolistpage/{id}"
+﻿@page "/usermandatorypage"
 
 @using Djibus.Core.Models
 @inject AuthenticationStateProvider GetAuthStateAsync
@@ -8,9 +7,9 @@
 
 @attribute [Authorize]
 
-<h3 class="alert alert-info">@DemandName</h3>
+<h3 class="alert alert-info">Assigning Roles</h3>
 <div class="table table-responsive">
-    <TelerikGrid Data="@Activities"
+    <TelerikGrid Data="@UserMandatories"
                  ConfirmDelete="true"
                  Resizable="true"
                  Reorderable="true"
@@ -20,9 +19,9 @@
                  Pageable="true"
                  Sortable="true"
                  Groupable="true"
-                 OnCreate="CreateActivity"
-                 OnUpdate="UpdateActivity"
-                 OnDelete="DeleteActivity"
+                 OnCreate="CreateRole"
+                 OnUpdate="UpdateRole"
+                 OnDelete="DeleteRole"
                  EditMode="GridEditMode.Popup"
                  FilterMode="GridFilterMode.FilterMenu"
                  ShowColumnMenu="true">
@@ -32,46 +31,52 @@
         </GridSettings>
         <GridToolBar>
             <GridCommandButton Command="ExcelExport">Export To Excel</GridCommandButton>
-            <GridCommandButton Command="Add" Icon="add">New Activity</GridCommandButton>
+            <GridCommandButton Command="Add" Icon="add">New Role</GridCommandButton>
         </GridToolBar>
         <GridColumns>
-            <GridColumn Field="@(nameof(Activity.DemandeId))" Title="Demand Name" Visible="true">
+            <GridColumn Field="@(nameof(UserMandatory.ProfileUserId))" Title="User Profile" Visible="true">
                 <Template>
                     @{
-                        int? id = (context as Activity).DemandeId;
-                            <text>@GetDemandById(id)</text>
+                        int id = (context as UserMandatory).ProfileUserId;
+                        <text>@GetProfileById(id)</text>
                     }
                 </Template>
                 <EditorTemplate>
                     @{
                         using (var ctx = MyContextFactory.CreateDbContext())
                         {
-                            var _Demandes = ctx.Demandes.ToList();
-                            var _activity = context as Activity;
-                            selectedValue = _activity.DemandeId;
-                                <TelerikDropDownList Data="@_Demandes"
-                                                 @bind-Value="@_activity.DemandeId"
-                                                 TextField="Title"
-                                                 ValueField="Id">
-                                </TelerikDropDownList>
+                            var _Profiles = ctx.ProfileUsers.ToList();
+                            var _usermandatory = context as UserMandatory;
+                            selectedValue = _usermandatory.ProfileUserId;
+                            <TelerikDropDownList Data="@_Profiles"
+                                             @bind-Value="@_usermandatory.ProfileUserId"
+                                         TextField="ProfileName"
+                                         ValueField="Id">
+                            </TelerikDropDownList>
                         }
                     }
                 </EditorTemplate>
             </GridColumn>
-            <GridColumn Field="@(nameof(Activity.Description))" Title="Description">
+            <GridColumn Field="@(nameof(UserMandatory.UserName))" Title="Username">
                 <EditorTemplate>
                     @{
-                        var item = (context as Activity);
-                            <TelerikTextArea @bind-Value="@item.Description" AutoSize="true" />
+                        using (var ctx = MyContextFactory.CreateDbContext())
+                        {
+                            var _Users = ctx.Users.ToList();
+                            var _usermandatory = context as UserMandatory;
+                            
+                            <TelerikDropDownList Data="@_Users"
+                                             @bind-Value="@_usermandatory.UserName"
+                                         TextField="Username"
+                                         ValueField="UserName">
+                            </TelerikDropDownList>
+                        }
                     }
                 </EditorTemplate>
             </GridColumn>
-            <GridColumn Field="@(nameof(Activity.ActivityDate))" Title="Date" DisplayFormat="{0:dd MMM yy}" />
-            <GridColumn Field="@(nameof(Activity.Duration))" Title="Duration (mn)" />
             <GridCommandColumn>
                 <GridCommandButton Command="Save" Icon="save" ShowInEdit="true"></GridCommandButton>
                 <GridCommandButton Command="Edit" Icon="edit"></GridCommandButton>
-                <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
                 <GridCommandButton Command="Delete" Icon="delete"></GridCommandButton>
             </GridCommandColumn>
         </GridColumns>

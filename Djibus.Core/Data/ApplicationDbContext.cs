@@ -21,5 +21,7 @@ namespace Djibus.Core.Data
         public DbSet<EntrepriseArchitect> EntrepriseArchitects { get; set; }
         public DbSet<BusinessAnalyst> BusinessAnalysts { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<ProfileUser> ProfileUsers { get; set; }
+        public DbSet<UserMandatory> UserMandatories { get; set; }
     }
 }
