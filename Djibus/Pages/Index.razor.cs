@@ -33,8 +33,14 @@ namespace Djibus.Pages
             using (var ctx = MyContextFactory.CreateDbContext())
             {
                 var result = await ctx.UserMandatories.Include(i => i.ProfileUser).SingleOrDefaultAsync((c => c.UserName == proprio));
-                
-                YourProfile.MyProfile = result.ProfileUser.ProfileName;
+                if(result !=null)
+                {
+                    YourProfile.MyProfile = result.ProfileUser.ProfileName;
+                }
+                else
+                {
+                    YourProfile.MyProfile = "Viewer";
+                }
             }
         }
 
